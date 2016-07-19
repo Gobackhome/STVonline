@@ -1,0 +1,14 @@
+<div ng-repeat="cat in categories" id="owl-demo-cat" class="owl-carousel carousel" data-autoplay="true" data-autoplay-timeout="3000" data-autoplay-hover="true" data-car-length="5" data-items="6" data-dots="false" data-loop="true" data-auto-width="true" data-margin="10">
+    <div class="item-cat item thumb-border">
+        <figure class="premium-img">
+            <!--<img src="http://placehold.it/185x130" alt="carousel">-->
+            <img ng-src="{{cat.thumbnail}}" alt="carousel">
+
+            <a href="categories.html" class="hover-posts">
+                <span><i class="fa fa-search"></i></span>
+            </a>
+        </figure>
+        <h6><a href="categories.html">Entertainment</a></h6>
+    </div>
+
+</div>

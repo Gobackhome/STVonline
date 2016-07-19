@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html class="no-js" lang="en" ng-app="STVAngularApp">
+
+<head>
+    <% include head.ejs %>
+    <%- block('head').toString() %>
+</head>
+
+<body ng-app="STVAngularApp" ng-controller="MainController">
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!--header-->
+        <% include _header_UI.ejs %>
+
+        <div class="off-canvas-content" data-off-canvas-content>
+            <header>
+                <!-- Top -->
+                <% include ../../public/partialviews/layout/_header_Top_UI.ejs %>
+                <!-- End Top -->
+
+                <!--Navber-->
+                <% include ../../public/partialviews/layout/_header_navBar_main_UI.ejs %>
+            </header>
+            <!-- End Header -->
+
+            <% body %>
+
+            <!-- footer -->
+            <% include _footer_pre_UI.ejs %>
+            <!-- ENd footer -->
+
+            <% include _footer_UI.ejs %>
+
+        </div>
+        <!--end off canvas content-->
+    </div>
+    <!--end off canvas wrapper inner-->
+</div>
+<!--end off canvas wrapper-->
+
+</body>
+
+</html>

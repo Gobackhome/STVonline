@@ -1,0 +1,72 @@
+
+<div class="large-8 columns profile-inner">
+    <!-- profile settings -->
+
+    <section>
+        <div class="row secBg">
+            <div class="large-12 columns">
+                <div class="heading">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <h4>Category</h4>
+                </div>
+                <div class="row">
+                   
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>_id</td>
+                            <td>Title</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="cat in categories">
+                                <td>{{cat._id}}</td>
+                                <td>{{cat.title}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+
+                        <form novalidate  name="userForm" ng-submit="addCategory(category)" enctype="multipart/form-data">
+                            <div data-abide-error class="alert callout" style="display: none;" ng-show="userForm.$invalid">
+                                <p><i class="fa fa-exclamation-triangle"></i>
+                                    There are some errors in your form.</p>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns form-group" ng-class="{ 'has-error' : userForm.title.$invalid && !userForm.title.$pristine }">
+                                    <label>Title
+                                        <input type="text" placeholder="enter you video title..."  name="title"
+                                               ng-model="category.title" required/>
+                                                        <span class="form-error help-block" ng-show="userForm.title.$invalid && !userForm.title.$pristine">
+                                                            Yo, you had better fill this out, it's required.
+                                                        </span>
+                                    </label>
+                                </div>
+                                <div class="large-12 columns" ng-class="{ 'has-error' : userForm.description.$invalid && !userForm.description.$pristine }">
+                                    <label>Description
+                                        <textarea ng-model="category.description"  placeholder="Put a chief description"  name="description" required></textarea>
+                                        <span ng-show="userForm.description.$invalid && !userForm.description.$pristine" class="help-block">Descriptionis required.</span>
+                                    </label>
+                                </div>
+                                <div class="upload-video" ng-class="{ 'has-error' : userForm.preview_image.$invalid && !userForm.preview_image.$pristine }">
+                                    <label >Upload Preview Image</label>
+                                    <input type="file" id="imgPreviewUpload" name="preview_image" ng-model="category.preview_image" >
+                                    <span ng-show="userForm.preview_image.$invalid && !userForm.preview_image.$pristine">No file chosen</span>
+                                </div>
+
+                                <div class="large-12 columns" style="margin-bottom: 30px">
+                                    <button class="button" type="submit" name="submit" ng-disabled="userForm.$invalid" >Add now</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End profile settings -->
+</div>

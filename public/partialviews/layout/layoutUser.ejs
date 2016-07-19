@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+    <% include head.ejs %>
+    <% block('head').toString() %>
+</head>
+
+<body  ng-app="stvOnlineApp" ng-controller="UserAreaCtrl" ng-init="onLoad()">
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!--header-->
+        <% include headerUserTop.ejs %>
+
+        <div class="off-canvas-content" data-off-canvas-content >
+            <% include headerUserContent.ejs %>
+            <!-- End Header -->
+            <% include contentUserTop.ejs %>
+
+            <div class="row">
+                <% include sidebarUser.ejs %>
+                <!-- left sidebar -->
+
+                <!-- right side content area -->
+
+
+                <%- body -%>
+            </div>
+
+            <!-- footer -->
+            <% include footer.ejs %>
+            <!-- ENd footer -->
+        </div>
+        <!--end off canvas content-->
+    </div>
+    <!--end off canvas wrapper inner-->
+</div>
+<!--end off canvas wrapper-->
+<% include scripts.ejs %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular-resource.min.js"></script>
+<script src="../../public/js/angular-file.js"></script>
+<script src="../../public/javascripts/stvOnlineApp.js"></script>
+<script src="../../public/js/ng-file-upload.min.js"></script>
+
+<%- block('footer').toString() %>
+</body>
+
+</html>

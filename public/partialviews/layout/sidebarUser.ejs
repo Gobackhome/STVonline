@@ -1,0 +1,37 @@
+<!-- left sidebar -->
+<div class="large-4 columns">
+    <aside class="secBg sidebar">
+        <div class="row">
+            <!-- profile overview -->
+            <div class="large-12 columns">
+                <div class="widgetBox">
+                    <div class="widgetTitle">
+                        <h5>Profile Overview</h5>
+                    </div>
+                    <div class="widgetContent">
+                        <a  ng-click="getNewPost()" class="button" style="margin-bottom: 30px;"><i class="fa fa-upload"></i>Add a new post</a>
+                        <a  ng-click="setUserAreaContent('category.html')" class="button" style="margin-bottom: 30px;"><i class="fa fa-upload"></i>Manage Category</a>
+
+                        <ul class="profile-overview">
+                            <li class="clearfix"><a ng-click="setUserAreaContent('about.html')"><i class="fa fa-user"></i>About me</a>
+                            </li>
+
+                            <li class="clearfix"><a ng-click="setUserAreaContent('posts.html')"><i class="fa fa-video-camera"></i>Videos
+                                    <span class="float-right">36</span></a></li>
+                            <li class="clearfix"><a ng-click="setUserAreaContent('favorite.html')"><i class="fa fa-heart"></i>Favorite
+                                    Videos<span class="float-right">50</span></a></li>
+                            <li class="clearfix"><a ng-click="setUserAreaContent('follower.html')"><i
+                                            class="fa fa-users"></i>Followers<span
+                                            class="float-right">6</span></a></li>
+                            <li class="clearfix"><a ng-click="setUserAreaContent('setting.html')"><i class="fa fa-gears"></i>Profile
+                                    Settings</a></li>
+                            <li class="clearfix"><a ng-click="logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- End profile overview -->
+        </div>
+    </aside>
+</div><!-- end sidebar -->
+<!-- right side content area -->
+

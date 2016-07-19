@@ -1,0 +1,40 @@
+<div class="register-form">
+    <h3 class="text-center">Login Now</h3>
+
+    <form data-abide novalidate name="myForm" id="myForm" method="post" action="/user/login">
+        <div data-abide-error class="alert callout" style="display: none;">
+            <p><i class="fa fa-exclamation-triangle"></i> There are some errors
+                in your form.
+            </p>
+        </div>
+        <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-user"></i></span>
+            <input class="input-group-field" type="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required>
+            <span class="form-error">email is required</span>
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-lock"></i></span>
+            <input type="password" id="password"
+                   name="password"
+                   placeholder="Enter your password"
+                   required>
+            <span class="form-error">password is required</span>
+        </div>
+        <div class="checkbox">
+            <input id="remember" type="checkbox" name="rememberMe"
+                   value="remember" ng-model="rememberme">
+            <label class="customLabel" for="remember">Remember me</label>
+        </div>
+        <button class="button expanded" type="submit">login
+            Now
+        </button>
+        <p class="loginclick"><a href="login-forgot-pass.html">Forgot
+            Password</a> New Here? <a
+                href="#" ng-click="setContent('signup.html')">Create a new Account</a></p>
+    </form>
+    <!--<input type="hidden" id="hfEmail" value ="{{myForm.email.$valid}}"/>-->
+    <!--<input type="hidden" id="hfPassword" value="{{myForm.password.$valid}}"/>-->

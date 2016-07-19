@@ -1,0 +1,45 @@
+<div class="register-form" ng-controller="UserCtrl">
+    <h3 class="text-center">Create your Account</h3>
+
+    <form method="post" data-abide novalidate>
+        <div data-abide-error class="alert callout" style="display: none;">
+            <p><i class="fa fa-exclamation-triangle"></i> There are some errors
+                in your form.
+                <%= msg %>
+            </p>
+        </div>
+        <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-user"></i></span>
+            <input class="input-group-field" type="text"
+                   placeholder="Enter your display name"
+                   required ng-model="$parent.displayName">
+        </div>
+
+        <div class="input-group">
+                                                    <span class="input-group-label"><i
+                                                            class="fa fa-envelope"></i></span>
+            <input class="input-group-field" type="email" name="email"
+                   placeholder="Enter your email"
+                   required ng-model="$parent.email">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-lock"></i></span>
+            <input type="password" id="password" name="password"
+                   placeholder="Enter your password" required ng-model="$parent.password">
+        </div>
+        <div class="input-group">
+            <span class="input-group-label"><i class="fa fa-lock"></i></span>
+            <input type="password" placeholder="Re-type your password" required
+                   pattern="alpha_numeric" data-equalto="password">
+        </div>
+        <span class="form-error">your email is invalid</span>
+        <button class="button expanded" type="submit" name="submit" ng-click="doSignup()">register
+            Now
+        </button>
+        <p class="loginclick"><a ng-click="setContent('login.html')">Login here</a><a
+                href="#">Already have
+            acoount?</a></p>
+    </form>
+    <hr/>
+</div>

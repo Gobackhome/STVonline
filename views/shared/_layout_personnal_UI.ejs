@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html class="no-js" lang="en" ng-app="STVAngularApp">
+
+<head>
+    <% include head.ejs %>
+    <%- block('head').toString() %>
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!--header-->
+        <% include _header_UI.ejs %>
+
+        <div class="off-canvas-content" data-off-canvas-content>
+            <header>
+                <!-- Top -->
+                <% include ../../public/partialviews/layout/_header_Top_UI.ejs %>
+                <!-- End Top -->
+
+                <!--Navber-->
+                <% include _navBar_main_UI.ejs %>
+            </header>
+            <!-- End Header -->
+
+            <div class="row">
+                <!-- left sidebar -->
+                <div class="large-4 columns">
+                    <% include _sideBar_personnal_UI.ejs %>
+                </div>
+                <!-- end sidebar -->
+                <!-- right side content area -->
+                <div class="large-8 columns profile-inner">
+                    <% body %>
+
+                </div><!-- end left side content area -->
+            </div>
+
+            <!-- footer -->
+            <% include _footer_pre_UI.ejs %>
+            <!-- ENd footer -->
+
+            <% include _footer_UI.ejs %>
+
+        </div>
+        <!--end off canvas content-->
+    </div>
+    <!--end off canvas wrapper inner-->
+</div>
+<!--end off canvas wrapper-->
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<div class="large-8 columns profile-inner">
+    <!-- profile settings -->
+
+    <section>
+        <div class="row secBg">
+            <div class="large-12 columns">
+                <div class="heading">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <h4>Add new video Post</h4>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+
+                        <form novalidate name="userForm" ng-submit="addPost(post)" enctype="multipart/form-data">
+                            <div data-abide-error class="alert callout" style="display: none;" ng-show="userForm.$invalid">
+                                <p><i class="fa fa-exclamation-triangle"></i> There are some errors in your form.</p>
+                            </div>
+                            <div class="row">
+                                <div class="large-12 columns form-group" ng-class="{ 'has-error' : userForm.title.$invalid && !userForm.title.$pristine }">
+                                    <label>Title
+                                        <input type="text" placeholder="enter you video title..."  name="title"
+                                               ng-model="post.title" required/>
+                                                        <span class="form-error help-block" ng-show="userForm.title.$invalid && !userForm.title.$pristine">
+                                                            Yo, you had better fill this out, it's required.
+                                                        </span>
+                                    </label>
+                                </div>
+                                <div class="large-12 columns" ng-class="{ 'has-error' : userForm.description.$invalid && !userForm.description.$pristine }">
+                                    <label>Description
+                                        <textarea ng-model="post.description"  placeholder="Put a chief description"  name="description" required></textarea>
+                                        <span ng-show="userForm.description.$invalid && !userForm.description.$pristine" class="help-block">Descriptionis required.</span>
+                                    </label>
+                                </div>
+                                <div class="large-12 columns">
+                                    <label class="borderBottom">Choose Video Method:</label>
+                                </div>
+                                <div class="large-12 columns">
+                                    <div class="radio">
+                                        <!--<label data-ng-repeat="choice in post.type.choices">-->
+                                        <!--<input type="radio" name="response" value="true" ng-click="setChoiceForQuestion(question1, choice)"/>-->
+                                        <!--{{choice.text}}-->
+                                        <!--</label>-->
+                                        <input type="radio" name="post_type" value="Video" id="videolink1" ng-model="post.post_type">
+                                        <label class="customLabel" for="videolink1">Video Link From Youtube</label>
+                                        <input type="radio" name="post_type" value="Mp3" id="videolink2" ng-model="post.post_type">
+                                        <label class="customLabel" for="videolink2">Mp3 </label>
+
+                                    </div>
+                                </div>
+                                <div class="large-12 columns" ng-class="{ 'has-error' : userForm.video_url.$invalid && !userForm.videourl.$pristine }">
+                                    <label>Link Video/Mp3:
+                                        <input type="url" placeholder="for example:http://yoursite.com/sample-video.mp4" name="video_url"
+                                               ng-model="post.video_url" required>
+                                        <span ng-show="userForm.video_url.$invalid && !userForm.video_url.$pristine" class="help-block">Not valid Url</span>
+
+                                    </label>
+
+                                </div>
+                                <div class="large-12 columns">
+                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_title.$invalid && !userForm.meta_title.$pristine }">
+                                        <label>Meta Title:
+                                            <textarea placeholder="enter meta title" name="meta_title"
+                                                      ng-model="post.meta_title" required></textarea>
+                                            <span ng-show="userForm.meta_title.$invalid && !userForm.meta_title.$pristine" class="help-block">Meta Title is required.</span>
+
+                                        </label>
+                                    </div>
+                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_description.$invalid && !userForm.meta_description.$pristine }">
+                                        <label>Meta Description:
+                                            <textarea placeholder="enter meta Description" name="meta_description"
+                                                      ng-model="post.meta_description" required></textarea>
+                                            <span ng-show="userForm.meta_description.$invalid && !userForm.meta_description.$pristine" class="help-block">Meta Description is required.</span>
+
+                                        </label>
+                                    </div>
+                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_keyword.$invalid && !userForm.meta_keyword.$pristine }">
+                                        <label>Meta keywords:
+                                            <textarea placeholder="enter meta keywords" name="meta_keyword"
+                                                      ng-model="post.meta_keyword" required></textarea>
+                                            <span ng-show="userForm.meta_keyword.$invalid && !userForm.meta_keyword.$pristine" class="help-block">Meta keywords is required.</span>
+
+                                        </label>
+                                    </div>
+                                    <div class="post-category">
+                                        <label>Choose Video Category:
+                                            <select ng-model="post.category"  name="category">
+                                                <option ng-repeat="cat in categories" value="{{cat._id}}">{{cat.title}}</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="upload-video" ng-class="{ 'has-error' : userForm.preview_image.$invalid && !userForm.preview_image.$pristine }">
+                                        <label>Upload Preview Image</label>
+                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
+                                            Select File</button>
+                                        <br><br>
+                                        <input type="hidden" name="previewImage" ng-model="post.previewImage" value="/{{f.destination}}{{f.filename}}" /> File:
+                                        <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                                            <span class="progress" ng-show="f.progress >= 0">
+                                                <div style="width:{{f.progress}}%"  
+                                                    ng-bind="f.progress + '%'"></div>
+                                            </span>
+                                        </div>
+                                        {{errorMsg}}
+
+                                        <br/>
+                                        <div class="upload-video" ng-class="{ 'has-error' : userForm.thumbnail_image.$invalid && !userForm.thumbnail_image.$pristine }">
+                                            <label>Upload Thumbnail Image</label>
+                                            <input type="file" id="imgThumbnailUpload" name="thumbnail_image" ng-model="post.thumbnail_image">
+                                            <span ng-show="userForm.thumbnail_image.$invalid && !userForm.thumbnail_image.$pristine">No file chosen</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="large-12 columns " ng-class="{ 'has-error' : userForm.tag.$invalid && !userForm.tag.$pristine }">
+                                        <label>Tags:
+                                        <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" name="tag"
+                                               data-role="tagsinput" ng-model="post.tags" required>
+                                        <span ng-show="userForm.tag.$invalid && !userForm.tag.$pristine" class="help-block">Tags is required.</span>
+
+                                    </label>
+
+                                    </div>
+                                    <div class="large-12 columns" style="margin-bottom: 30px">
+                                        <button class="button" type="submit" name="submit" ng-disabled="userForm.$invalid">publish now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End profile settings -->
+</div>

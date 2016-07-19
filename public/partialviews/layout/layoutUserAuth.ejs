@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+    <% include head.ejs %>
+    <% block('head').toString() %>
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <!--header-->
+        <% include headerUserTop.ejs %>
+
+        <div class="off-canvas-content" data-off-canvas-content >
+            <% include headerUserContent.ejs %>
+            <!-- End Header -->
+
+
+            <!-- registration -->
+            <section class="registration">
+                <div class="row secBg">
+                    <div class="large-12 columns">
+                        <div class="login-register-content">
+                            <div class="row collapse borderBottom" >
+
+                            </div>
+                            <div class="row" data-equalizer data-equalize-on="medium" id="test-eq" style="margin-top: 30px;">
+                                <div class="large-4 large-offset-1 medium-6 columns">
+                                    <div class="social-login" data-equalizer-watch>
+                                        <h3 class="text-center">Login via Social Profile</h3>
+
+                                        <div class="social-login-btn facebook">
+                                            <a href="#"><i class="fa fa-facebook"></i>login via facebook</a>
+                                        </div>
+                                        <div class="social-login-btn twitter">
+                                            <a href="#"><i class="fa fa-twitter"></i>login via twitter</a>
+                                        </div>
+                                        <div class="social-login-btn g-plus">
+                                            <a href="/auth/google"><i class="fa fa-google-plus"></i>login via google
+                                                plus</a>
+                                        </div>
+                                        <div class="social-login-btn linkedin">
+                                            <a href="#"><i class="fa fa-linkedin"></i>login via linkedin</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="large-2 medium-2 columns show-for-large">
+                                    <div class="middle-text text-center hide-for-small-only" data-equalizer-watch=""
+                                         style="height: 304px;">
+                                        <p>
+                                            <i class="fa fa-arrow-left arrow-left"></i>
+                                            <span>OR</span>
+                                            <i class="fa fa-arrow-right arrow-right"></i>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="large-4 medium-6 columns end"  ng-app="stvOnlineApp" ng-controller="AuthCtrl">
+                                    <%- body -%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <!--</script>-->
+        </div>
+
+
+        <!-- footer -->
+        <% include footer.ejs %>
+        <!-- ENd footer -->
+
+    </div>
+    <!--end off canvas content-->
+</div>
+<!--end off canvas wrapper inner-->
+<!--end off canvas wrapper-->
+<% include scripts.ejs %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="/public/javascripts/stvOnlineApp.js"></script>
+<script src="../../public/js/ng-file-upload.min.js"></script>
+
+
+<%- block('footer').toString() %>
+</body>
+
+</html>
