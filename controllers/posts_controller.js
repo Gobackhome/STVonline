@@ -112,8 +112,12 @@ exports.getPosts = function (req, res) {
 // };
 
 exports.addPost = function (req, res, next) {
+    console.log("exports.addPost : ");
+
     var post;
     post = new Post(req.body.post);
+    console.log(req.body.post);
+    console.log('add post');
     console.log(post);
     post.set('title_url', changeAlias(req.body.post.title));
     post.set('tag', stringToArray(req.body.tags));
@@ -122,11 +126,11 @@ exports.addPost = function (req, res, next) {
         upsert: true,
         setDefaultsOnInsert: true
     };
-    Post.update({_id: post._id}, post, options, function(err, post){
+    Post.update({ _id: post._id }, post, options, function (err, result) {
         if (err) {
-            res.json(404, {msg:"Update post failure."});
-        }else{
-            res.json(201, { post: post, msg: 'Add post successful.' });
+            res.json(404, { msg: "Update post failure." });
+        } else {
+            res.json(201, { post: result, msg: 'Add post successful.' });
         }
     });
 };

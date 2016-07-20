@@ -39,7 +39,9 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
             file.upload.then(function (response) {
                 setTimeout(function () {
                     file.result = response.data;
-                    $scope.post.previewImage = '/' + response.destination + response.filename;
+                    $scope.post.preview_image = '/' + response.data.destination + response.data.filename;
+                    console.log( $scope.post.preview_image);
+                    console.log(response);
                 }, 0);
             }, function (response) {
                 if (response.status > 0)
@@ -62,11 +64,12 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
         $scope.userAreaContent = path + 'newPost.html';
     }
     $scope.getNewPost = function () {
-        $scope.post = [];
+        $scope.post = {};
         $scope.userAreaContent = path + 'newPost.html';
     }
     $scope.addPost = function (post) {
-
+        console.log("$scope.addPost : ");
+        console.log(post);
         //Luu vao factory
         //Goi Http luu vao database
         $http.post('/posts', { post: post })

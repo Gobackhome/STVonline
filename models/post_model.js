@@ -47,7 +47,7 @@ CategorySchema.plugin(findOrCreate);
 mongoose.model('Category', CategorySchema);
 
 var PostSchema = new Schema({
-    title:  {type: String, default: ''},
+    title:  {type: String, default: '',unique:true},
     title_url: {type: String, default: ''},
     description : {type: String, default: ''},
     post_type: {type: String, default: ''},
@@ -63,7 +63,8 @@ var PostSchema = new Schema({
     is_active: {type: Boolean, default: false},
     comments:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    like: {type: Number, default: 0}
+    like: {type: Number, default: 0},
+    views: Number
 });
 PostSchema.methods.makeLike = function(cb) {
     this.like += 1;

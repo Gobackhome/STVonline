@@ -23,14 +23,13 @@ module.exports = function(app){
     var users = require('../controllers/users_controller');
     var posts = require('../controllers/posts_controller');
     var playlists = require('../controllers/playlists_controller');
+    var index = require('../controllers/index_controller');
 
     app.use('/public', express.static('./public')).
         use('/models',express.static('./models')).
         use('/lib',express.static('../lib'));
 
-    app.get('/',function(req,res){
-        res.render('index');
-    })
+    app.get('/',index.index);
     app.get('/account',users.getUser);
     app.get('/userarea',function(req,res){
         if(req.session.user){
