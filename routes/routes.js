@@ -24,6 +24,7 @@ module.exports = function(app){
     var posts = require('../controllers/posts_controller');
     var playlists = require('../controllers/playlists_controller');
     var index = require('../controllers/index_controller');
+    var lists = require('../controllers/list_controller');
 
     app.use('/public', express.static('./public')).
         use('/models',express.static('./models')).
@@ -48,10 +49,17 @@ module.exports = function(app){
 
     app.get('/posts',posts.getPosts);
     app.post('/posts',posts.addPost);
+    app.delete('/posts/:id',posts.doDelete);
+    app.post('/posts/feature',posts.getFeatureSlider);
+    
+    app.get('/single/:id',index.single_post);
+    
     app.post('/upload',uploader.single('file'), posts.upload);
     //app.get('/post/tag/:title',posts.findOrCreateTag());
     app.get('/categories',posts.getCategories);
     app.post('/categories',posts.addCategory);
+
+    app.get('/list/:list_url',lists.getLists);
     //app.get('/single/:post_id',posts.getPost);
     //app.get('/posts/get',posts.getPosts);
     //app.get('/playlist/get',playlists.getPlaylists);

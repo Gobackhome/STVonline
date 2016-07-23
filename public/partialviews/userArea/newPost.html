@@ -47,37 +47,49 @@
 
                                     </div>
                                 </div>
+                                <div class="large-12 columns">
+                                    <label class="borderBottom">Choose to Show in Feature Slider:</label>
+                                </div>
+                                <div class="large-12 columns">
+                                    <div class="radio">
+                                        <!--<label data-ng-repeat="choice in post.type.choices">-->
+                                        <!--<input type="radio" name="response" value="true" ng-click="setChoiceForQuestion(question1, choice)"/>-->
+                                        <!--{{choice.text}}-->
+                                        <!--</label>-->
+                                        {{post.is_featureSlider}}
+                                        <input type="radio" name="is_featureSlider" value="true" id="feature1" ng-model="post.is_featureSlider" >
+                                        <label class="customLabel" for="feature1">Add to feature</label>
+                                        <input type="radio" name="is_featureSlider" value="false" id="feature2" ng-model="post.is_featureSlider"  >
+                                        <label class="customLabel" for="feature2">No </label>
+
+                                    </div>
+                                </div>
                                 <div class="large-12 columns" ng-class="{ 'has-error' : userForm.video_url.$invalid && !userForm.videourl.$pristine }">
                                     <label>Link Video/Mp3:
                                         <input type="url" placeholder="for example:http://yoursite.com/sample-video.mp4" name="video_url"
                                                ng-model="post.video_url" required>
                                         <span ng-show="userForm.video_url.$invalid && !userForm.video_url.$pristine" class="help-block">Not valid Url</span>
-
                                     </label>
-
                                 </div>
                                 <div class="large-12 columns">
-                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_title.$invalid && !userForm.meta_title.$pristine }">
+                                    <div class="post-meta" >
                                         <label>Meta Title:
                                             <textarea placeholder="enter meta title" name="meta_title"
                                                       ng-model="post.meta_title" required></textarea>
-                                            <span ng-show="userForm.meta_title.$invalid && !userForm.meta_title.$pristine" class="help-block">Meta Title is required.</span>
 
                                         </label>
                                     </div>
-                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_description.$invalid && !userForm.meta_description.$pristine }">
+                                    <div class="post-meta" >
                                         <label>Meta Description:
                                             <textarea placeholder="enter meta Description" name="meta_description"
                                                       ng-model="post.meta_description" required></textarea>
-                                            <span ng-show="userForm.meta_description.$invalid && !userForm.meta_description.$pristine" class="help-block">Meta Description is required.</span>
 
                                         </label>
                                     </div>
-                                    <div class="post-meta" ng-class="{ 'has-error' : userForm.meta_keyword.$invalid && !userForm.meta_keyword.$pristine }">
+                                    <div class="post-meta">
                                         <label>Meta keywords:
                                             <textarea placeholder="enter meta keywords" name="meta_keyword"
                                                       ng-model="post.meta_keywords" required></textarea>
-                                            <span ng-show="userForm.meta_keyword.$invalid && !userForm.meta_keyword.$pristine" class="help-block">Meta keywords is required.</span>
 
                                         </label>
                                     </div>
@@ -88,7 +100,8 @@
                                             </select>
                                         </label>
                                     </div>
-                                    <div class="upload-video" ng-class="{ 'has-error' : userForm.preview_image.$invalid && !userForm.preview_image.$pristine }">
+                                    
+                                    <div class="upload-video" >
                                         <label>Upload Preview Image</label>
                                         <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
                                             Select File</button>
@@ -103,24 +116,33 @@
                                         {{errorMsg}}
 
                                         <br/>
-                                        <div class="upload-video" ng-class="{ 'has-error' : userForm.thumbnail_image.$invalid && !userForm.thumbnail_image.$pristine }">
+                                        <div class="upload-video" >
                                             <label>Upload Thumbnail Image</label>
                                             <input type="file" id="imgThumbnailUpload" name="thumbnail_image" ng-model="post.thumbnail_image">
-                                            <span ng-show="userForm.thumbnail_image.$invalid && !userForm.thumbnail_image.$pristine">No file chosen</span>
+                                        </div>
+                                            <label>Upload Thumbnail Image</label>
+                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
+                                            Select File</button>
+                                        <br><br>
+                                        <input type="hidden" name="thumbnail_image" ng-model="post.thumbnail_image" value="/{{f.destination}}{{f.filename}}" /> File:
+                                        <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                                            <span class="progress" ng-show="f.progress >= 0">
+                                                <div style="width:{{f.progress}}%"  
+                                                    ng-bind="f.progress + '%'"></div>
+                                            </span>
                                         </div>
                                     </div>
 
-                                    <div class="large-12 columns " ng-class="{ 'has-error' : userForm.tag.$invalid && !userForm.tag.$pristine }">
+                                    <div class="large-12 columns " >
                                         <label>Tags:
-                                        <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" name="tag"
-                                               data-role="tagsinput" ng-model="post.tags" required>
-                                        <span ng-show="userForm.tag.$invalid && !userForm.tag.$pristine" class="help-block">Tags is required.</span>
+                                        <input type="text" name="tag"
+                                               data-role="tagsinput" ng-model="post.tag.join(',')" required>
 
                                     </label>
 
                                     </div>
                                     <div class="large-12 columns" style="margin-bottom: 30px">
-                                        <button class="button" type="submit" name="submit" ng-disabled="userForm.$invalid">publish now</button>
+                                        <button class="button" type="submit" name="submit">publish now</button>
                                     </div>
                                 </div>
                             </div>

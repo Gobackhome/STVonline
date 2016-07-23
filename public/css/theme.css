@@ -53,7 +53,7 @@ img {
 
 .off-canvas-content,
 .off-canvas-content {
-  background: #f0f0f0; }
+  background: #eeef6d; }
 
 .object-fit_fill {
   -o-object-fit: fill;
@@ -435,7 +435,7 @@ input[type=checkbox]:checked + .customLabel:before {
 	ii) NavBar
    ========================================================================== */
 #navBar {
-  background-image:url('../images/bg-topheader.png')/* #EEEF6D*/;
+  background-color: #EEEF6D /*url('../images/bg-topheader.png')*/ ;
   position: relative;
   z-index: 6; }
   #navBar .top-bar {

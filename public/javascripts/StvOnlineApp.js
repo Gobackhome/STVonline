@@ -82,6 +82,17 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
                 $window.alert(data.msg);
             })
     };
+    $scope.doDelete = function(post){
+        console.log("angular: ");
+        console.log(post._id);
+        $http.delete("/posts/:_id",{_id:post._id})
+        .success(function(data,status,headers,config){
+            alert(data.msg);
+        })
+        .error(function(data,status,headers,config){
+            alert(data.msg);
+        })
+    }
     $scope.addCategory = function (category) {
         console.log("addCategory: " + category.title + " " + category.description + " " + category.preview_image);
         console.log('addCategory - push ' + $scope.categories);

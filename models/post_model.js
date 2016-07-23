@@ -51,6 +51,7 @@ var PostSchema = new Schema({
     title_url: {type: String, default: ''},
     description : {type: String, default: ''},
     post_type: {type: String, default: ''},
+    is_featureSlider: {type: Boolean, default: false},
     video_url : {type: String, default: ''},
     preview_image: {type: String, default: ''},
     thumbnail_image: {type: String, default: ''},
@@ -63,8 +64,8 @@ var PostSchema = new Schema({
     is_active: {type: Boolean, default: false},
     comments:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reply' }],
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    like: {type: Number, default: 0},
-    views: Number
+    likes: {type: Number, default: 0},
+    views: {type: Number, default: 0}
 });
 PostSchema.methods.makeLike = function(cb) {
     this.like += 1;

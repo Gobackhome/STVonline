@@ -76,7 +76,7 @@ exports.getPosts = function (req, res) {
         .limit(psize)
         .skip(psize * (req.body.pageIndex - 1))
         .sort({
-            post_date: 'asc'
+            post_date: 'desc'
         })
         .exec(function (err, posts) {
             if (!posts) {
@@ -87,6 +87,19 @@ exports.getPosts = function (req, res) {
             }
         });
 };
+exports.getFeatureSlider =function(req,res,next){
+     Post.find({is_featureSlider : true})
+        .sort({
+            post_date: 'desc'
+        })
+        .exec(function (err, posts) {
+            if (!posts) {
+                res.json(404, { msg: 'Post Not Found.' });
+            } else {
+                res.json(posts);
+            }
+        });
+}
 
 // exports.addPost = function (req, res,next) {
 //     var post;
@@ -110,7 +123,17 @@ exports.getPosts = function (req, res) {
 //     });
 //     res.json(201,{post: post,msg: 'Add post successful.'});
 // };
-
+exports.doDelete = function(req,res,next){
+    console.log("dodelete");
+    console.log(req);
+    Post.remove({_id: req.body._id},function(err){
+        if(!err){
+            res.json(201,{msg: "Delete post successful."})
+        }else{
+            res.json(404,{msg: "Delete post failure."})
+        }
+    })
+}
 exports.addPost = function (req, res, next) {
     console.log("exports.addPost : ");
 
@@ -122,7 +145,7 @@ exports.addPost = function (req, res, next) {
     post.set('title_url', changeAlias(req.body.post.title));
     post.set('tag', stringToArray(req.body.tags));
     var options = {
-        new: true,
+        new: false,
         upsert: true,
         setDefaultsOnInsert: true
     };

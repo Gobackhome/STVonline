@@ -13,17 +13,21 @@
  app.controller('Index', ['$scope', 'indexArea', '$http', '$window', function($scope, userArea, $http, $window) {
 
      $scope.onLoad = function() {
-         $http.get('/post')
+         //newest
+         $http.get('/posts')
              .success(function(data, status, headers, config) {
-                 userArea.posts = data;
+                 indexArea.newposts = data;
              });
+        //list category
          $http.get('/category')
              .success(function(data, status, headers, config) {
-                 userArea.categories = data;
+                 indexArea.categories = data;
              });
-         $scope.posts = userArea.posts;
-         $scope.categories = userArea.categories;
-         console.log(userArea.categories);
+        //feature
+        $http.get('/posts/feature')
+            .success(function(data,status,headers,config){
+                indexArea.featurePost = data;
+            });
      }
 
  }]);

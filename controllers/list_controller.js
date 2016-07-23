@@ -7,8 +7,7 @@ var S = require('string');
 var myConfig = require('../config/myconfig');
 var Q = require('q');
 
-
-exports.index = function (req, res, next) {
+exports.getLists = function (req, res, next) {
     var psize = myConfig.paging.pagesize;
     var skipTotal = req.body.pageIndex > 0 ? psize * (req.body.pageIndex - 1) : 0;
 
@@ -20,7 +19,7 @@ exports.index = function (req, res, next) {
         
     ]).spread(
         function (categories, posts, featurePosts,newsetPost) {
-            res.render('index', {
+            res.render('list', {
                 posts: posts,
                 categories: categories,
                 featurePosts: featurePosts,
@@ -32,24 +31,4 @@ exports.index = function (req, res, next) {
             return next(err);
         }
         ).done();
-};
-exports.single_post = function (req, res, next) {
-    var id = req.params.id;
-   
-    Post.findById(id).exec(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-        post.views++;
-        post.save(function (err, post) {
-            if (err) {
-                return next(err);
-            }
-            return res.render('single_post', {
-                post: post,
-                moment: moment
-            });
-        });
-
-    });
 };
