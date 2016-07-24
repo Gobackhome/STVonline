@@ -4,7 +4,7 @@
 var mongoose = require('mongoose'),
     User  = mongoose.model('User'),
     Post = mongoose.model('Post'),
-    randomstring = require("randomstring");;
+    randomstring = require("randomstring");
 var crypto = require('crypto');
 
 function hashPW(pwd, passwordSalt){
@@ -72,6 +72,7 @@ exports.login = function(req,res){
                     //res.json(201, {msg: "Success"});
 
                     res.redirect('/userarea');
+                   
                 });
             }else{
                 err = 'Authentication failed.';
@@ -79,10 +80,17 @@ exports.login = function(req,res){
             if(err){
                 req.session.regenerate(function(){
                     req.session.msg = err;
+                    
                     //res.json(201, {msg: "Failure"});
                     //res.redirect('/user/login',{msg: "Login Failure. Check email/password again."});
-                    res.redirect('/user/login');
-
+                    res.render('/user/login',{
+                                msg: "",
+                                head: {
+                                        title: "Trang chủ",
+                                        meta_description: "STVonline - Đi Tìm Giá Trị Vĩnh Hằng. Qua những bài thu âm dựng thành clip, hy vọng rằng sẽ mang đến cho bạn những giây phút thư giản, bình yên.",
+                                        meta_keywords: "Stvonline, đi tìm giá trị vĩnh hằng, ý nghĩa cuộc sống, hành trình, trái tim, tâm hồn, bình an"
+                                    },
+                            })
                 })
 
             }

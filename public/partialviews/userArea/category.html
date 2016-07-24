@@ -16,12 +16,14 @@
                         <tr>
                             <td>_id</td>
                             <td>Title</td>
+                             <td>Type</td>
                         </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="cat in categories">
                                 <td>{{cat._id}}</td>
                                 <td>{{cat.title}}</td>
+                                <td>{{cat.category_type}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -52,10 +54,34 @@
                                         <span ng-show="userForm.description.$invalid && !userForm.description.$pristine" class="help-block">Descriptionis required.</span>
                                     </label>
                                 </div>
+                                <div class="large-12 columns">
+                                    <div class="radio">
+                                        <!--<label data-ng-repeat="choice in post.type.choices">-->
+                                        <!--<input type="radio" name="response" value="true" ng-click="setChoiceForQuestion(question1, choice)"/>-->
+                                        <!--{{choice.text}}-->
+                                        <!--</label>-->
+                                        <input type="radio" name="post_type" value="parent" id="videolink1" ng-model="category.category_type">
+                                        <label class="customLabel" for="videolink1">Parent</label>
+                                        <input type="radio" name="post_type" value="child" id="videolink2" ng-model="category.category_type">
+                                        <label class="customLabel" for="videolink2">Child </label>
+
+                                    </div>
+                                </div>
                                 <div class="upload-video" ng-class="{ 'has-error' : userForm.preview_image.$invalid && !userForm.preview_image.$pristine }">
-                                    <label >Upload Preview Image</label>
+                                
+                                   <label>Upload Preview Image</label>
+                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles,'category_preview')" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
+                                            Select File</button>
+                                        <br><br>
                                     <input type="file" id="imgPreviewUpload" name="preview_image" ng-model="category.preview_image" >
-                                    <span ng-show="userForm.preview_image.$invalid && !userForm.preview_image.$pristine">No file chosen</span>
+                                        <input type="hidden" name="previewImage" ng-model="category.previewImage" value="/{{f.destination}}{{f.filename}}" /> File:
+                                        <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                                            <span class="progress" ng-show="f.progress >= 0">
+                                                <div style="width:{{f.progress}}%"  
+                                                    ng-bind="f.progress + '%'"></div>
+                                            </span>
+                                        </div>
+                                        {{errorMsg}}
                                 </div>
 
                                 <div class="large-12 columns" style="margin-bottom: 30px">

@@ -25,7 +25,14 @@ module.exports = function(app){
     var playlists = require('../controllers/playlists_controller');
     var index = require('../controllers/index_controller');
     var lists = require('../controllers/list_controller');
-
+    var res_head = {
+        msg: "",
+        head: {
+            title: "Trang chủ",
+            meta_description: "STVonline - Đi Tìm Giá Trị Vĩnh Hằng. Qua những bài thu âm dựng thành clip, hy vọng rằng sẽ mang đến cho bạn những giây phút thư giản, bình yên.",
+            meta_keywords: "Stvonline, đi tìm giá trị vĩnh hằng, ý nghĩa cuộc sống, hành trình, trái tim, tâm hồn, bình an"
+        }
+    }
     app.use('/public', express.static('./public')).
         use('/models',express.static('./models')).
         use('/lib',express.static('../lib'));
@@ -35,7 +42,7 @@ module.exports = function(app){
     app.get('/userarea',function(req,res){
         if(req.session.user){
             //res.render('user',{displayName: req.session.displayName, msg: req.session.msg});
-            res.render('user');
+            res.render('user',res_head);
         }else{
             req.session.msg = 'Access denied!';
             res.redirect('/user/login');
@@ -43,7 +50,7 @@ module.exports = function(app){
     });
     app.post('/user',users.signup);
     app.get('/user/login',function(req,res){
-        res.render('login',{msg: ""})
+        res.render('login',res_head);
     });
     app.post('/user/login',users.login);
 
@@ -52,7 +59,7 @@ module.exports = function(app){
     app.delete('/posts/:id',posts.doDelete);
     app.post('/posts/feature',posts.getFeatureSlider);
     
-    app.get('/single/:id',index.single_post);
+    app.get('/single/:cat_url/:title_url',index.single_post);
     
     app.post('/upload',uploader.single('file'), posts.upload);
     //app.get('/post/tag/:title',posts.findOrCreateTag());

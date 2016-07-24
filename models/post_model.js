@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     findOrCreate = require('mongoose-findorcreate');
 
-
 var ReplySchema = new Schema({
     display_name: {type: String, default: ''},
     subject: {type: String, default: ''},
@@ -39,8 +38,10 @@ mongoose.model("Image",ImageSchema);
 var CategorySchema = new Schema({
     title: {type: String},
     description : {type: String, default: ''},
+    title_url: {type: String},
     preview_image: {type: String, default: ''},
     create_date: {type: Date,default: Date.now},
+    category_type: {type: String,default: ''},
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
 });
 CategorySchema.plugin(findOrCreate);

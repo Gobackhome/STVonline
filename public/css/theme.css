@@ -53,7 +53,7 @@ img {
 
 .off-canvas-content,
 .off-canvas-content {
-  background: #eeef6d; }
+  background: #efefef; }
 
 .object-fit_fill {
   -o-object-fit: fill;
@@ -2265,7 +2265,7 @@ footer {
     transform: rotate(7deg); }
 
 .fullwidth-single-video {
-  background: #303030;
+  background: #eeef6d;
   padding: 25px 0;
   margin-bottom: 30px; }
   .fullwidth-single-video .flex-video {

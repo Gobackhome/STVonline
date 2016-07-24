@@ -25,9 +25,18 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
 
             });
         console.log(userArea.posts);
+        $scope.category = {
+            title:'',
+            description : '',
+            title_url: '',
+            preview_image: '',
+            create_date:  Date.now,
+            category_type: '',
+            posts: []
+        }
     }
 
-    $scope.uploadFiles = function (file, errFiles) {
+    $scope.uploadFiles = function (file, errFiles, owner) {
         $scope.f = file;
         $scope.errFile = errFiles && errFiles[0];
         if (file) {
@@ -35,13 +44,17 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
                 url: '/upload',
                 data: { file: file }
             });
-
+            
             file.upload.then(function (response) {
                 setTimeout(function () {
                     file.result = response.data;
-                    $scope.post.preview_image = '/' + response.data.destination + response.data.filename;
-                    console.log( $scope.post.preview_image);
-                    console.log(response);
+                    if (owner == 'post_preview') {
+                        $scope.post.preview_image = '/' + response.data.destination + response.data.filename;
+                    } else if (owner == 'post_thumbnail') {
+                        $scope.post.thumbnail_image = '/' + response.data.destination + response.data.filename;
+                    } else if (owner == 'category_preview') {
+                        $scope.category.preview_image = '/' + response.data.destination + response.data.filename;
+                    }
                 }, 0);
             }, function (response) {
                 if (response.status > 0)
@@ -82,20 +95,17 @@ app.controller('UserAreaCtrl', ['$scope', 'userArea', '$http', '$window', 'Uploa
                 $window.alert(data.msg);
             })
     };
-    $scope.doDelete = function(post){
-        console.log("angular: ");
-        console.log(post._id);
-        $http.delete("/posts/:_id",{_id:post._id})
-        .success(function(data,status,headers,config){
-            alert(data.msg);
-        })
-        .error(function(data,status,headers,config){
-            alert(data.msg);
-        })
+    $scope.doDelete = function (post) {
+        $http.delete("/posts/:_id", { _id: post._id })
+            .success(function (data, status, headers, config) {
+                alert(data.msg);
+            })
+            .error(function (data, status, headers, config) {
+                alert(data.msg);
+            })
     }
     $scope.addCategory = function (category) {
         console.log("addCategory: " + category.title + " " + category.description + " " + category.preview_image);
-        console.log('addCategory - push ' + $scope.categories);
         $http.post('/categories', category)
             .success(function (data, status, headers, config) {
                 category.title = '';

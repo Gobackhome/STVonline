@@ -4,7 +4,9 @@
 var mongoose = require('mongoose'),
     Post = mongoose.model('Post'),
     Tag = mongoose.model('Tag'),
-    Category = mongoose.model('Category');
+    Category = mongoose.model('Category'),
+    randomstring = require("randomstring");
+
 
 
 var S = require('string');
@@ -87,8 +89,8 @@ exports.getPosts = function (req, res) {
             }
         });
 };
-exports.getFeatureSlider =function(req,res,next){
-     Post.find({is_featureSlider : true})
+exports.getFeatureSlider = function (req, res, next) {
+    Post.find({ is_featureSlider: true })
         .sort({
             post_date: 'desc'
         })
@@ -123,25 +125,22 @@ exports.getFeatureSlider =function(req,res,next){
 //     });
 //     res.json(201,{post: post,msg: 'Add post successful.'});
 // };
-exports.doDelete = function(req,res,next){
+exports.doDelete = function (req, res, next) {
     console.log("dodelete");
     console.log(req);
-    Post.remove({_id: req.body._id},function(err){
-        if(!err){
-            res.json(201,{msg: "Delete post successful."})
-        }else{
-            res.json(404,{msg: "Delete post failure."})
+    Post.remove({ _id: req.body._id }, function (err) {
+        if (!err) {
+            res.json(201, { msg: "Delete post successful." })
+        } else {
+            res.json(404, { msg: "Delete post failure." })
         }
     })
 }
 exports.addPost = function (req, res, next) {
-    console.log("exports.addPost : ");
-
     var post;
     post = new Post(req.body.post);
     console.log(req.body.post);
     console.log('add post');
-    console.log(post);
     post.set('title_url', changeAlias(req.body.post.title));
     post.set('tag', stringToArray(req.body.tags));
     var options = {
@@ -173,7 +172,13 @@ exports.getCategories = function (req, res) {
         })
 };
 exports.addCategory = function (req, res) {
-    Category.findOrCreate({ title: req.body.title, description: req.body.description }, function (err, cat, created) {
+    Category.findOrCreate({ 
+        title: req.body.title, 
+        description: req.body.description, 
+        category_type: req.body.category_type ,
+        title_url: randomstring.generate(7),
+        preview_image: req.body.preview_image
+    }, function (err, cat, created) {
         if (cat) {
             res.json(201, { msg: "Add category successful.", category: cat });
         } else {

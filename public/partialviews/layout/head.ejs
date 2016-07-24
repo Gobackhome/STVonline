@@ -1,4 +1,14 @@
-<title>STVonline | User Profile</title>
+<% if(head){%>
+    <title>STVonline |  <%= head.title %></title>
+    <meta name="keywords" content="<%= head.meta_keywords %>"/>
+    <meta name="description" content="<%= head.meta_description %>"/>
+<%}else{%>
+
+    <title>STVonline</title>
+    <meta name="keywords" content="stvonline, đi tìm giá trị vĩnh hằng, ý nghĩa cuộc sống, bình yên"/>
+    <meta name="description" content="STVonline - Đi Tìm Giá Trị Vĩnh Hằng. Qua những bài thu âm dựng thành clip, hy vọng rằng sẽ mang đến cho bạn những giây phút thư giản, bình yên."/>
+<%}%>
+
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

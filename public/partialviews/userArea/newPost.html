@@ -103,7 +103,7 @@
                                     
                                     <div class="upload-video" >
                                         <label>Upload Preview Image</label>
-                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
+                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles,'post_preview')" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
                                             Select File</button>
                                         <br><br>
                                         <input type="hidden" name="previewImage" ng-model="post.previewImage" value="/{{f.destination}}{{f.filename}}" /> File:
@@ -121,7 +121,7 @@
                                             <input type="file" id="imgThumbnailUpload" name="thumbnail_image" ng-model="post.thumbnail_image">
                                         </div>
                                             <label>Upload Thumbnail Image</label>
-                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
+                                        <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles,'post_thumbnail')" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
                                             Select File</button>
                                         <br><br>
                                         <input type="hidden" name="thumbnail_image" ng-model="post.thumbnail_image" value="/{{f.destination}}{{f.filename}}" /> File:

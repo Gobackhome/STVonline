@@ -3,7 +3,7 @@
  * Tương tự như Cart, thực hiện sưu tầm playlist application server using Express and connecting to MongoDB
  */
 var express = require('express'),
-    engine = require('ejs-mate');
+    engine = require('ejs-locals');
 var favicon = require('serve-favicon');
 var path = require('path');
 
