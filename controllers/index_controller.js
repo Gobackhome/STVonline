@@ -17,9 +17,9 @@ exports.index = function (req, res, next) {
         Post.find().limit(psize).skip(skipTotal).populate('category').sort({ post_date: 'desc' }).exec(),//all post
         Post.find({ is_featureSlider: true }).limit(6).skip(skipTotal).populate('category').sort({ post_date: 'desc' }).exec(),//feature
         Post.find().limit(psize).skip(skipTotal).populate('category').sort({ post_date: 'desc' }).exec(),//newest post
-
+        Post.find().limit(psize).skip(skipTotal).populate('category').sort({views: 'desc'}).exec()//viewest post
     ]).spread(
-        function (categories, posts, featurePosts, newsetPost) {
+        function (categories, posts, featurePosts, newsetPost,viewest) {
             console.log(posts);
             res.render('index', {
                 head: {
@@ -31,7 +31,8 @@ exports.index = function (req, res, next) {
                 categories: categories,
                 featurePosts: featurePosts,
                 newsetPost: newsetPost,
-                moment: moment
+                moment: moment,
+                viewest: viewest
             });
         },
         function (error) {
@@ -50,19 +51,28 @@ exports.single_post = function (req, res, next) {
         Post.find().populate('category').limit(psize).skip(skipTotal).sort({ views: 'desc' }).exec(),
         Post.find().limit(psize).skip(skipTotal).sort({ views: 'desc' }).populate('category', null, { title_url: cat_url }).exec(),//viewest post
         Post.findOneAndUpdate({ title_url: title_url }, { $inc: { views: 1 } }).populate('category').exec(),//single post
+        Post.find().limit(psize).skip(skipTotal).populate('category').sort({ post_date: 'desc' }).exec(),//newest post
+        
     ]).spread(
-        function (categories, viewestPost, relativePosts, post) {
+        function (categories, viewestPost, relativePosts, post,newestPost) {
+            var title  = description = keywords = '';
+            if(post){
+                title = post.title;
+                description = post.meta_description;
+                keywords = post.keywords;
+            }
             res.render('single_post', {
-                head: {
-                    title: post.title,
-                    meta_description: post.meta_description,
-                    meta_keywords: post.meta_keywords
-                },
                 categories: categories,
                 relativePosts: relativePosts,
                 viewestPost: viewestPost,
                 post: post,
-                moment: moment
+                moment: moment,
+                newestPost: newestPost,
+                head: {
+                    title: title,
+                    meta_description: description,
+                    meta_keywords: keywords
+                },
             });
         },
         function (error) {

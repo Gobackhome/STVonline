@@ -116,7 +116,7 @@
                         
                         <div class="categories">
                             <button><i class="fa fa-folder"></i>Categories</button>
-                            <a href="#" class="inner-btn"><%= post.category.title %></a>
+                            <a href="/category/<%= post.category.title_url %>" class="inner-btn"><%= post.category.title %></a>
                         </div>
                         <!--<div class="tags">
                             <button><i class="fa fa-tags"></i>Tags</button>
@@ -152,12 +152,12 @@
                             <div class="post thumb-border">
                                 <div class="post-thumb">
                                     <img src="<%= post.thumbnail_image %>" alt="landing">
-                                    <a href="#" class="hover-posts">
+                                    <a href="/single/<%= post.category.title_url %>/<%= post.title_url %>" class="hover-posts">
                                         <span><i class="fa fa-play"></i>Watch Video</span>
                                     </a>
                                 </div>
                                 <div class="post-des">
-                                    <h6><a href="#"><%= post.title %></a></h6>
+                                    <h6><a href="/single/<%= post.category.title_url %>/<%= post.title_url %>"><%= post.title %></a></h6>
                                     <div class="post-stats clearfix">
                                         <p class="pull-left">
                                             <i class="fa fa-user"></i>
@@ -165,7 +165,7 @@
                                         </p>
                                         <p class="pull-left">
                                             <i class="fa fa-clock-o"></i>
-                                            <span><%= moment(post.title).format('DD/MM/YYYY') %></span>
+                                            <span><%= moment(post.post_date).format('DD/MM/YYYY') %></span>
                                         </p>
                                         <p class="pull-left">
                                             <i class="fa fa-eye"></i>
@@ -176,7 +176,7 @@
                                         <p><%= post.description %></p>
                                     </div>
                                     <div class="post-button">
-                                        <a href="#" class="secondary-button"><i class="fa fa-play-circle"></i>watch video</a>
+                                        <a href="/single/<%= post.category.title_url %>/<%= post.title_url %>" class="secondary-button"><i class="fa fa-play-circle"></i>watch video</a>
                                     </div>
                                 </div>
                             </div>

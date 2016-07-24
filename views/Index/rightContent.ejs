@@ -43,70 +43,28 @@
                 <h5>Most View Videos</h5>
               </div>
               <div class="widgetContent">
+              <% viewest.forEach(function(post){ %>
                 <div class="video-box thumb-border">
-                  <div class="video-img-thumb">
-                    <img src="http://placehold.it/300x190" alt="most viewed videos">
-                    <a href="#" class="hover-posts">
-                      <span><i class="fa fa-play"></i>Watch Video</span>
-                    </a>
+                    <div class="video-img-thumb">
+                      <img src="<%= post.thumbnail %>" alt="most viewed videos">
+                      <a href="/single/<%= post.category.title_url %>/<%= post.title_url %>" class="hover-posts">
+                        <span><i class="fa fa-play"></i>Watch Video</span>
+                      </a>
+                    </div>
+                    <div class="video-box-content">
+                      <h6><a href="/single/<%= post.category.title_url %>/<%= post.title_url %>"><%= post.title %></a></h6>
+                      <p>
+                        <span><i class="fa fa-user"></i><a href="#">admin</a></span>
+                        <span><i class="fa fa-clock-o"></i><%= moment(post.post_date).format('DD/MM/YYYY')%></span>
+                        <span><i class="fa fa-eye"></i><%= post.views %></span>
+                      </p>
+                    </div>
                   </div>
-                  <div class="video-box-content">
-                    <h6><a href="#">There are many variations of passage. </a></h6>
-                    <p>
-                      <span><i class="fa fa-user"></i><a href="#">admin</a></span>
-                      <span><i class="fa fa-clock-o"></i>5 January 16</span>
-                      <span><i class="fa fa-eye"></i>1,862K</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="video-box thumb-border">
-                  <div class="video-img-thumb">
-                    <img src="http://placehold.it/300x190" alt="most viewed videos">
-                    <a href="#" class="hover-posts">
-                      <span><i class="fa fa-play"></i>Watch Video</span>
-                    </a>
-                  </div>
-                  <div class="video-box-content">
-                    <h6><a href="#">There are many variations of passage. </a></h6>
-                    <p>
-                      <span><i class="fa fa-user"></i><a href="#">admin</a></span>
-                      <span><i class="fa fa-clock-o"></i>5 January 16</span>
-                      <span><i class="fa fa-eye"></i>1,862K</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="video-box thumb-border">
-                  <div class="video-img-thumb">
-                    <img src="http://placehold.it/300x190" alt="most viewed videos">
-                    <a href="#" class="hover-posts">
-                      <span><i class="fa fa-play"></i>Watch Video</span>
-                    </a>
-                  </div>
-                  <div class="video-box-content">
-                    <h6><a href="#">There are many variations of passage. </a></h6>
-                    <p>
-                      <span><i class="fa fa-user"></i><a href="#">admin</a></span>
-                      <span><i class="fa fa-clock-o"></i>5 January 16</span>
-                      <span><i class="fa fa-eye"></i>1,862K</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="video-box thumb-border">
-                  <div class="video-img-thumb">
-                    <img src="http://placehold.it/300x190" alt="most viewed videos">
-                    <a href="#" class="hover-posts">
-                      <span><i class="fa fa-play"></i>Watch Video</span>
-                    </a>
-                  </div>
-                  <div class="video-box-content">
-                    <h6><a href="#">There are many variations of passage. </a></h6>
-                    <p>
-                      <span><i class="fa fa-user"></i><a href="#">admin</a></span>
-                      <span><i class="fa fa-clock-o"></i>5 January 16</span>
-                      <span><i class="fa fa-eye"></i>1,862K</span>
-                    </p>
-                  </div>
-                </div>
+
+              <%})%>
+               
+               
+               
               </div>
             </div>
           </div>
