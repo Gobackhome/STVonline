@@ -3,7 +3,9 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    findOrCreate = require('mongoose-findorcreate');
+    findOrCreate = require('mongoose-findorcreate'),
+    random = require('mongoose-random');
+ 
 
 var ReplySchema = new Schema({
     display_name: {type: String, default: ''},
@@ -36,9 +38,10 @@ var ImageSchema = new Schema({
 mongoose.model("Image",ImageSchema);
 
 var CategorySchema = new Schema({
-    title: {type: String},
+    title: { type: String },
     description : {type: String, default: ''},
-    title_url: {type: String},
+    title_url: {type: String,default: ''},
+    code:{type: String,default: ''},
     preview_image: {type: String, default: ''},
     create_date: {type: Date,default: Date.now},
     category_type: {type: String,default: ''},
@@ -60,6 +63,7 @@ var PostSchema = new Schema({
     meta_description: {type: String, default: ''},
     meta_keywords: {type: String, default: ''},
     category : { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+    menu : { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
     tag:  [{type: String}],
     post_date:{type: Date, default: Date.now},
     is_active: {type: Boolean, default: false},
@@ -72,6 +76,7 @@ PostSchema.methods.makeLike = function(cb) {
     this.like += 1;
     this.save(cb);
 };
+PostSchema.plugin(random, { path: 'r' });
 mongoose.model('Post', PostSchema);
 
 //

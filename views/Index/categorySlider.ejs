@@ -1,41 +1,41 @@
   <section id="category" class="removeMargin whiteBg">
-                <div class="row">
-                    <div class="large-12 columns">
-                        <div class="column row">
-                            <div class="heading category-heading clearfix">
-                                <div class="cat-head pull-left">
-                                    <i class="fa fa-folder-open"></i>
-                                    <h4>Browse Videos By Category</h4>
-                                </div>
-                                <div>
-                                <div class="navText pull-right show-for-large">
-                                    <a class="prev secondary-button"><i class="fa fa-angle-left"></i></a>
-                                    <a class="next secondary-button"><i class="fa fa-angle-right"></i></a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- category carousel -->
-                        <div id="owl-demo-cat" class="owl-carousel carousel" data-autoplay="true" data-autoplay-timeout="3000" data-autoplay-hover="true" data-car-length="5" data-items="6" data-dots="false" data-loop="true" data-auto-width="true" data-margin="10">
-                            <% categories.forEach(function(category){%>
-                                <div class="item-cat item thumb-border">
-                                    <figure class="premium-img">
-                                        <img src="<%= category.preview_image %>" alt="<%= category.title%>">
-                                        <a href="/category/<%= category.title_url %>" class="hover-posts">
-                                            <span><i class="fa fa-search"></i></span>
-                                        </a>
-                                    </figure>
-                                    <h6><a href="/category/<%= category.title_url %>"><%= category.title %></a></h6>
-                                </div>
-                            <%}) %>
-                           
-                           
-                        </div><!-- end carousel -->
-                        <div class="row">
-                            <div class="large-12 columns text-center row-btn">
-                                <a href="categories.html" class="button radius">View All Categories</a>
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="column row">
+                <div class="heading category-heading clearfix">
+                    <div class="cat-head pull-left">
+                        <i class="fa fa-folder-open"></i>
+                        <h4>Xem theo chủ đề</h4>
+                    </div>
+                    <div>
+                    <div class="navText pull-right show-for-large">
+                        <a class="prev secondary-button"><i class="fa fa-angle-left"></i></a>
+                        <a class="next secondary-button"><i class="fa fa-angle-right"></i></a>
+                    </div>
                     </div>
                 </div>
-            </section><!-- End Category -->
+            </div>
+            <!-- category carousel -->
+            <div id="owl-demo-cat" class="owl-carousel carousel" data-autoplay="true" data-autoplay-timeout="3000" data-autoplay-hover="true" data-car-length="5" data-items="6" data-dots="false" data-loop="true" data-auto-width="true" data-margin="10">
+                <% categories.forEach(function(category){%>
+                    <div class="item-cat item thumb-border">
+                        <figure class="premium-img">
+                            <img src="<%= category.preview_image %>" alt="<%= category.title%>">
+                            <a href="/category/<%= category.title_url %>" class="hover-posts">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                        </figure>
+                        <h6><a href="/category/<%= category.title_url %>"><%= category.title %></a></h6>
+                    </div>
+                <% }) %>
+                
+                
+            </div><!-- end carousel -->
+            <div class="row">
+                <div class="large-12 columns text-center row-btn">
+                    <a href="/category" class="button radius">Xem tất cả chủ đề</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Category -->

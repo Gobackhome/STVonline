@@ -57,9 +57,9 @@
                                         <!--{{choice.text}}-->
                                         <!--</label>-->
                                         {{post.is_featureSlider}}
-                                        <input type="radio" name="is_featureSlider" value="true" id="feature1" ng-model="post.is_featureSlider" >
+                                        <input type="radio" name="is_featureSlider" value="true" id="feature1" ng-model="post.is_featureSlider">
                                         <label class="customLabel" for="feature1">Add to feature</label>
-                                        <input type="radio" name="is_featureSlider" value="false" id="feature2" ng-model="post.is_featureSlider"  >
+                                        <input type="radio" name="is_featureSlider" value="false" id="feature2" ng-model="post.is_featureSlider">
                                         <label class="customLabel" for="feature2">No </label>
 
                                     </div>
@@ -72,14 +72,14 @@
                                     </label>
                                 </div>
                                 <div class="large-12 columns">
-                                    <div class="post-meta" >
+                                    <div class="post-meta">
                                         <label>Meta Title:
                                             <textarea placeholder="enter meta title" name="meta_title"
                                                       ng-model="post.meta_title" required></textarea>
 
                                         </label>
                                     </div>
-                                    <div class="post-meta" >
+                                    <div class="post-meta">
                                         <label>Meta Description:
                                             <textarea placeholder="enter meta Description" name="meta_description"
                                                       ng-model="post.meta_description" required></textarea>
@@ -96,12 +96,19 @@
                                     <div class="post-category">
                                         <label>Choose Video Category:
                                             <select ng-model="post.category"  name="category">
-                                                <option ng-repeat="cat in categories" value="{{cat._id}}">{{cat.title}}</option>
+                                                <option ng-repeat="cat in categories | filter:{ category_type :'child'}" value="{{cat._id}}">{{cat.title}}</option>
                                             </select>
                                         </label>
                                     </div>
-                                    
-                                    <div class="upload-video" >
+                                    <div class="post-category">
+                                        <label>Choose Video Menu :
+                                            <select ng-model="post.menu"  name="category">
+                                                <option ng-repeat="cat in categories | filter:{ category_type :'parent'}" value="{{cat._id}}">{{cat.title}}</option>
+                                            </select>
+                                        </label>
+                                    </div>
+
+                                    <div class="upload-video">
                                         <label>Upload Preview Image</label>
                                         <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles,'post_preview')" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
                                             Select File</button>
@@ -116,11 +123,11 @@
                                         {{errorMsg}}
 
                                         <br/>
-                                        <div class="upload-video" >
+                                        <div class="upload-video">
                                             <label>Upload Thumbnail Image</label>
                                             <input type="file" id="imgThumbnailUpload" name="thumbnail_image" ng-model="post.thumbnail_image">
                                         </div>
-                                            <label>Upload Thumbnail Image</label>
+                                        <label>Upload Thumbnail Image</label>
                                         <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles,'post_thumbnail')" accept="image/*" ngf-max-height="10000" ngf-max-size="10MB">
                                             Select File</button>
                                         <br><br>
@@ -132,14 +139,17 @@
                                             </span>
                                         </div>
                                     </div>
-
-                                    <div class="large-12 columns " >
+                                    <div class="large-12 columns ">
+                                        <label>Views:
+                                            <input type="number" name="views"
+                                               data-role="tagsinput" ng-model="post.views" required>
+                                        </label>
+                                    </div>
+                                    <div class="large-12 columns ">
                                         <label>Tags:
-                                        <input type="text" name="tag"
+                                            <input type="text" name="tag"
                                                data-role="tagsinput" ng-model="post.tag.join(',')" required>
-
-                                    </label>
-
+                                        </label>
                                     </div>
                                     <div class="large-12 columns" style="margin-bottom: 30px">
                                         <button class="button" type="submit" name="submit">publish now</button>

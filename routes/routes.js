@@ -25,6 +25,8 @@ module.exports = function(app){
     var playlists = require('../controllers/playlists_controller');
     var index = require('../controllers/index_controller');
     var lists = require('../controllers/list_controller');
+    var category = require('../controllers/category_controller');
+    
     var res_head = {
         msg: "",
         head: {
@@ -58,7 +60,8 @@ module.exports = function(app){
     app.post('/posts',posts.addPost);
     app.delete('/posts/:id',posts.doDelete);
     app.post('/posts/feature',posts.getFeatureSlider);
-    
+    // app.get('/posts/menu',posts.menu);
+    // app.get('/posts/viewestPost',posts.viewestPost);
     app.get('/single/:cat_url/:title_url',index.single_post);
     
     app.post('/upload',uploader.single('file'), posts.upload);
@@ -66,6 +69,7 @@ module.exports = function(app){
     app.get('/categories',posts.getCategories);
     app.post('/categories',posts.addCategory);
 
+    app.get('/category/:title_url',category.getCategories);
     app.get('/list/:list_url',lists.getLists);
     //app.get('/single/:post_id',posts.getPost);
     //app.get('/posts/get',posts.getPosts);

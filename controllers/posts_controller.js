@@ -18,7 +18,7 @@ function changeAlias(alias) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ  |ặ|ẳ|ẵ/g, "a");
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
     str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
-    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ  |ợ|ở|ỡ/g, "o");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
     str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
     str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
     str = str.replace(/đ/g, "d");
@@ -142,7 +142,7 @@ exports.addPost = function (req, res, next) {
     console.log(req.body.post);
     console.log('add post');
     post.set('title_url', changeAlias(req.body.post.title));
-    post.set('tag', stringToArray(req.body.tags));
+    // post.set('tag', stringToArray(req.body.tags));
     var options = {
         new: false,
         upsert: true,
@@ -176,7 +176,9 @@ exports.addCategory = function (req, res) {
         title: req.body.title, 
         description: req.body.description, 
         category_type: req.body.category_type ,
-        title_url: randomstring.generate(7),
+        // post.set('title_url', changeAlias(req.body.post.title));
+        title_url:  changeAlias(req.body.title),
+        code: randomstring.generate(7),
         preview_image: req.body.preview_image
     }, function (err, cat, created) {
         if (cat) {
