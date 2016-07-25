@@ -41,5 +41,5 @@ app.use(expressSession({
     })
 }));
 require('./routes/routes')(app);
-app.listen(6003);
+app.listen(80);
 module.exports = app;
